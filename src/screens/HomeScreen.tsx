@@ -21,18 +21,30 @@ export function HomeScreen() {
 
   async function markAttendance(status: 'present' | 'absent') {
     setSaving(true);
-    const isAuthorized = await authenticateUser(t('authPrompt'));
+    const authResult = await authenticateUser(t('authPrompt'));
 
-    if (!isAuthorized) {
-      Alert.alert(t('authFailed'));
+    if (!authResult.success) {
+      Alert.alert(
+        t('authFailed'),
+        authResult.reason === 'hardware_unavailable'
+          ? 'No biometric hardware detected on this device.'
+          : authResult.reason === 'not_enrolled'
+            ? 'No biometric profile is enrolled on this device.'
+            : undefined,
+      );
       setSaving(false);
       return;
     }
 
-    const date = getTodayISODate();
-    dispatch(markStudent({ studentId: DEMO_STUDENT_ID, status }));
-    await upsertAttendanceRecord(DEMO_STUDENT_ID, DEMO_CLASS_ID, date, status);
-    setSaving(false);
+    try {
+      const date = getTodayISODate();
+      await upsertAttendanceRecord(DEMO_STUDENT_ID, DEMO_CLASS_ID, date, status);
+      dispatch(markStudent({ studentId: DEMO_STUDENT_ID, status }));
+    } catch {
+      Alert.alert('Unable to save attendance. Please try again.');
+    } finally {
+      setSaving(false);
+    }
   }
 
   const recordCount = Object.keys(pendingMarks).length;
