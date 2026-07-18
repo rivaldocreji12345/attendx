@@ -196,13 +196,13 @@ export function LeavesScreen() {
         {!loading && leaves.length === 0 && (
           <View style={styles.emptyCard}>
             <MaterialIcons name="event-available" size={40} color={colors.outlineVariant} />
-            <Text style={styles.emptyText}>No leave records found.</Text>
+            <Text style={styles.emptyText}>{t('noLeaveRecords')}</Text>
             <Pressable
               accessibilityLabel="apply-first-leave"
               onPress={handleAddLeave}
               style={styles.applyFirstBtn}
             >
-              <Text style={styles.applyFirstBtnText}>Apply for Leave</Text>
+              <Text style={styles.applyFirstBtnText}>{t('applyForLeave')}</Text>
             </Pressable>
           </View>
         )}

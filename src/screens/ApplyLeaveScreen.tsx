@@ -48,19 +48,19 @@ export function ApplyLeaveScreen() {
 
   async function handleSubmit() {
     if (!leaveType) {
-      Alert.alert('Please select a leave type.');
+      Alert.alert(t('selectLeaveTypeFirst'));
       return;
     }
     if (!startDate || !endDate) {
-      Alert.alert('Please enter start and end dates.');
+      Alert.alert(t('enterDates'));
       return;
     }
     if (!reason.trim()) {
-      Alert.alert('Please enter a reason for leave.');
+      Alert.alert(t('enterReason'));
       return;
     }
     if (endDate < startDate) {
-      Alert.alert('End date cannot be before start date.');
+      Alert.alert(t('endBeforeStart'));
       return;
     }
 
@@ -75,10 +75,10 @@ export function ApplyLeaveScreen() {
         documentName,
       );
       Alert.alert(t('leaveSubmitted'), '', [
-        { text: 'OK', onPress: () => router.back() },
+        { text: t('cancel'), onPress: () => router.back() },
       ]);
     } catch {
-      Alert.alert('Failed to submit leave request. Please try again.');
+      Alert.alert(t('failedToSave'));
     } finally {
       setSaving(false);
     }
@@ -115,14 +115,14 @@ export function ApplyLeaveScreen() {
         <Text style={styles.subtitle}>{t('applyLeaveSubtitle')}</Text>
 
         {/* Subject (optional) */}
-        <Text style={styles.fieldLabel}>SUBJECT (OPTIONAL)</Text>
+        <Text style={styles.fieldLabel}>{t('selectSubjectOptional')}</Text>
         <Pressable
           accessibilityLabel="subject-picker"
           onPress={() => setShowSubjectPicker(true)}
           style={styles.pickerBtn}
         >
           <Text style={styles.pickerBtnText}>
-            {selectedSubject ? selectedSubject.name : 'All Subjects / General'}
+            {selectedSubject ? selectedSubject.name : t('allSubjectsGeneral')}
           </Text>
           <MaterialIcons name="arrow-drop-down" size={24} color={colors.primary} />
         </Pressable>
@@ -173,7 +173,7 @@ export function ApplyLeaveScreen() {
           multiline
           numberOfLines={4}
           onChangeText={setReason}
-          placeholder="Describe the reason for your leave..."
+          placeholder={t('reasonPlaceholder')}
           placeholderTextColor={colors.outlineVariant}
           style={styles.reasonInput}
           textAlignVertical="top"
@@ -200,7 +200,7 @@ export function ApplyLeaveScreen() {
         >
           <MaterialIcons name="send" size={18} color="#fff" />
           <Text style={styles.submitBtnText}>
-            {saving ? 'Submitting...' : t('submitLeaveRequest')}
+            {saving ? t('submitting') : t('submitLeaveRequest')}
           </Text>
         </Pressable>
 
@@ -282,7 +282,7 @@ export function ApplyLeaveScreen() {
               style={[styles.modalOption, !selectedSubject && styles.modalOptionActive]}
             >
               <Text style={[styles.modalOptionText, !selectedSubject && styles.modalOptionTextActive]}>
-                All Subjects / General
+                {t('allSubjectsGeneral')}
               </Text>
               {!selectedSubject && <MaterialIcons name="check" size={18} color={colors.primary} />}
             </Pressable>

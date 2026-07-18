@@ -55,7 +55,7 @@ export function MarkAttendanceScreen() {
 
   async function handleSave() {
     if (!selectedSubject) {
-      Alert.alert('Please select a subject.');
+      Alert.alert(t('selectSubjectFirst'));
       return;
     }
     setSaving(true);
@@ -64,7 +64,7 @@ export function MarkAttendanceScreen() {
       setExistingRecord(status);
       Alert.alert(t('attendanceSaved'));
     } catch {
-      Alert.alert('Failed to save attendance. Please try again.');
+      Alert.alert(t('failedToSave'));
     } finally {
       setSaving(false);
     }
@@ -112,7 +112,7 @@ export function MarkAttendanceScreen() {
             <Text style={styles.loggedInLabel}>{t('loggedInAs')}</Text>
             <Text style={styles.loggedInName}>{profile?.studentName ?? 'Student'}</Text>
             <Text style={styles.loggedInMeta}>
-              Student ID: {profile?.rollNumber ?? '–'}
+              {t('studentId')}: {profile?.rollNumber ?? '–'}
             </Text>
           </View>
         </View>
@@ -189,7 +189,7 @@ export function MarkAttendanceScreen() {
 
         {existingRecord && (
           <Text style={styles.existingNote}>
-            Already marked: {existingRecord}. Saving will update the record.
+            {t('alreadyMarkedPrefix')}: {existingRecord}. {t('updateRecordNote')}
           </Text>
         )}
 
@@ -202,7 +202,7 @@ export function MarkAttendanceScreen() {
         >
           <MaterialIcons name="save" size={20} color="#fff" />
           <Text style={styles.saveBtnText}>
-            {saving ? 'Saving...' : t('saveAttendance')}
+            {saving ? t('saving') : t('saveAttendance')}
           </Text>
         </Pressable>
       </ScrollView>

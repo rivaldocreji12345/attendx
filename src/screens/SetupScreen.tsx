@@ -53,7 +53,7 @@ export function SetupScreen() {
 
   async function handleSave() {
     if (!studentName.trim() || !rollNumber.trim() || !courseName.trim()) {
-      Alert.alert('Please fill all fields.');
+      Alert.alert(t('allFieldsRequired'));
       return;
     }
     const validSubjects = subjects.map((s) => s.trim()).filter(Boolean);
@@ -77,7 +77,7 @@ export function SetupScreen() {
       dispatch(setProfile(profile));
       router.replace('/(tabs)');
     } catch {
-      Alert.alert('Failed to save profile. Please try again.');
+      Alert.alert(t('failedToSave'));
     } finally {
       setSaving(false);
     }
@@ -208,7 +208,7 @@ export function SetupScreen() {
                 accessibilityLabel={`subject-${index + 1}-input`}
                 autoCapitalize="words"
                 onChangeText={(v) => updateSubject(index, v)}
-                placeholder={`Subject ${index + 1}`}
+                placeholder={t('subjectPlaceholder', { n: index + 1 })}
                 placeholderTextColor={colors.outlineVariant}
                 style={[styles.input, styles.subjectInput]}
                 value={subject}
@@ -247,7 +247,7 @@ export function SetupScreen() {
         >
           <MaterialIcons name="check-circle" size={20} color="#fff" />
           <Text style={styles.submitBtnText}>
-            {saving ? 'Saving...' : t('completeProfileSetup')}
+            {saving ? `${t('saving')}` : t('completeProfileSetup')}
           </Text>
         </Pressable>
       </ScrollView>

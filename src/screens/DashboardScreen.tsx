@@ -15,14 +15,7 @@ import type { RootState } from '@/store';
 import { colors, radii, spacing, typography } from '@/theme/tokens';
 import type { SubjectWithStats } from '@/types/models';
 
-function getProgressColor(percent: number): string {
-  if (percent >= 85) return colors.primary;
-  if (percent >= 75) return colors.secondary;
-  if (percent >= 65) return colors.warning;
-  return colors.error;
-}
-
-function getPercentColor(percent: number): string {
+function getAttendanceColor(percent: number): string {
   if (percent >= 85) return colors.primary;
   if (percent >= 75) return colors.secondary;
   if (percent >= 65) return colors.warning;
@@ -115,9 +108,7 @@ export function DashboardScreen() {
         {!loading && subjects.length === 0 && (
           <View style={styles.emptyCard}>
             <MaterialIcons name="school" size={40} color={colors.outlineVariant} />
-            <Text style={styles.emptyText}>
-              No subjects found. Please set up your profile first.
-            </Text>
+            <Text style={styles.emptyText}>{t('noSubjectsFound')}</Text>
           </View>
         )}
 
@@ -152,7 +143,7 @@ export function DashboardScreen() {
                 <Text
                   style={[
                     styles.percentText,
-                    { color: getPercentColor(subject.attendancePercent) },
+                    { color: getAttendanceColor(subject.attendancePercent) },
                   ]}
                 >
                   {subject.attendancePercent}%
@@ -164,13 +155,13 @@ export function DashboardScreen() {
                     styles.progressFill,
                     {
                       width: `${Math.min(subject.attendancePercent, 100)}%`,
-                      backgroundColor: getProgressColor(subject.attendancePercent),
+                      backgroundColor: getAttendanceColor(subject.attendancePercent),
                     },
                   ]}
                 />
               </View>
               {isWarning && (
-                <Text style={styles.borderlineText}>Borderline</Text>
+                <Text style={styles.borderlineText}>{t('borderline')}</Text>
               )}
             </View>
           );
@@ -190,7 +181,7 @@ export function DashboardScreen() {
             </View>
             <View style={styles.summaryDivider} />
             <View style={styles.summaryItem}>
-              <Text style={[styles.summaryValue, { color: getPercentColor(overallPercent) }]}>
+              <Text style={[styles.summaryValue, { color: getAttendanceColor(overallPercent) }]}>
                 {overallPercent}%
               </Text>
               <Text style={styles.summaryLabel}>{t('overallAttendance')}</Text>

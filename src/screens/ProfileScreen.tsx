@@ -54,12 +54,12 @@ export function ProfileScreen() {
 
   function handleEditProfile() {
     Alert.alert(
-      'Reset Profile',
-      'This will clear your current profile and subjects. Continue?',
+      t('resetProfile'),
+      t('resetProfileMsg'),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('cancel'), style: 'cancel' },
         {
-          text: 'Reset',
+          text: t('reset'),
           style: 'destructive',
           onPress: () => {
             dispatch(setProfile(null));
@@ -136,7 +136,7 @@ export function ProfileScreen() {
         </View>
 
         {/* Settings */}
-        <Text style={styles.sectionLabel}>Settings</Text>
+        <Text style={styles.sectionLabel}>{t('settings')}</Text>
         <View style={styles.card}>
           {/* Language */}
           <View style={styles.menuItem}>
@@ -187,7 +187,7 @@ export function ProfileScreen() {
         </View>
 
         {/* App info */}
-        <Text style={styles.appInfoText}>{t('appTitle')} • Offline-first Attendance Tracker</Text>
+        <Text style={styles.appInfoText}>{t('appTitle')} • {t('offlineTracker')}</Text>
       </ScrollView>
     </View>
   );

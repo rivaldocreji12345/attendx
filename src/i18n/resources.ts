@@ -10,6 +10,21 @@ export const resources = {
       authPrompt: 'Authenticate to continue',
       authFailed: 'Authentication failed',
 
+      // Common / Generic
+      saving: 'Saving...',
+      submitting: 'Submitting...',
+      cancel: 'Cancel',
+      reset: 'Reset',
+      settings: 'Settings',
+      allFieldsRequired: 'Please fill all fields.',
+      failedToSave: 'Failed to save. Please try again.',
+      selectSubjectFirst: 'Please select a subject.',
+      alreadyMarkedNote: 'Already marked: {{status}}. Saving will update the record.',
+      offlineTracker: 'Offline-first Attendance Tracker',
+      selectSubjectOptional: 'SUBJECT (OPTIONAL)',
+      allSubjectsGeneral: 'All Subjects / General',
+      studentId: 'Student ID',
+
       // Dashboard
       todaySummary: "Today's Summary",
       records: 'Records',
@@ -21,6 +36,7 @@ export const resources = {
       hours: 'hours',
       actionRequired: 'Action Required',
       criticallyLow: 'Critically low attendance alert',
+      noSubjectsFound: 'No subjects found. Please set up your profile first.',
 
       // Setup
       profileSetup: 'Student Profile Setup',
@@ -38,7 +54,7 @@ export const resources = {
       currentSemester: 'Current Semester',
       subjects: 'Subjects',
       subjectsHint: 'List the subjects you are attending this semester to build your tracking dashboard.',
-      subjectPlaceholder: 'Subject name',
+      subjectPlaceholder: 'Subject {{n}}',
       addMoreSubjects: 'Add More Subjects',
       completeProfileSetup: 'Complete Profile Setup',
       verifyDetails: 'Verify your details carefully. This profile is set up once per semester.',
@@ -57,6 +73,8 @@ export const resources = {
       present: 'Present',
       saveAttendance: 'Save Attendance',
       attendanceSaved: 'Attendance saved!',
+      alreadyMarkedPrefix: 'Already marked',
+      updateRecordNote: 'Saving will update the record.',
 
       // Reports
       reports: 'Reports',
@@ -89,6 +107,8 @@ export const resources = {
       sortByDate: 'Sort by Date',
       viewAllRecords: 'View All My Records',
       personalHistory: 'Personal History',
+      noLeaveRecords: 'No leave records found.',
+      applyForLeave: 'Apply for Leave',
 
       // Apply Leave
       applyLeave: 'Apply Leave',
@@ -103,6 +123,7 @@ export const resources = {
       startDate: 'Start Date',
       endDate: 'End Date',
       reasonForLeave: 'Reason for Leave',
+      reasonPlaceholder: 'Describe the reason for your leave...',
       supportingDocuments: 'Supporting Documents',
       supportingDocumentsHint: 'Optional',
       uploadHint: 'Tap to upload or drag files',
@@ -112,6 +133,10 @@ export const resources = {
       attendancePolicyDesc:
         'Minimum 75% attendance is mandatory for semester exams. Approved leaves do not count towards your absence quota.',
       leaveSubmitted: 'Leave request submitted!',
+      selectLeaveTypeFirst: 'Please select a leave type.',
+      enterDates: 'Please enter start and end dates.',
+      enterReason: 'Please enter a reason for leave.',
+      endBeforeStart: 'End date cannot be before start date.',
 
       // Profile
       profile: 'Profile',
@@ -123,6 +148,8 @@ export const resources = {
       biometricLock: 'Biometric Lock',
       leaveHistory: 'Leave History',
       mark: 'Mark',
+      resetProfile: 'Reset Profile',
+      resetProfileMsg: 'This will clear your current profile and subjects. Continue?',
     },
   },
   hi: {
@@ -130,12 +157,26 @@ export const resources = {
       appTitle: 'अटेंडेंस प्रो',
       appSubtitle: 'अपनी शैक्षणिक उपस्थिति ट्रैक करें',
 
+      saving: 'सहेज रहे हैं...',
+      submitting: 'सबमिट हो रहा है...',
+      cancel: 'रद्द करें',
+      reset: 'रीसेट',
+      settings: 'सेटिंग्स',
+      allFieldsRequired: 'कृपया सभी फ़ील्ड भरें।',
+      failedToSave: 'सहेजने में विफल। पुनः प्रयास करें।',
+      selectSubjectFirst: 'कृपया एक विषय चुनें।',
+      alreadyMarkedNote: 'पहले से चिह्नित: {{status}}। सहेजने से रिकॉर्ड अपडेट होगा।',
+      offlineTracker: 'ऑफ़लाइन उपस्थिति ट्रैकर',
+      selectSubjectOptional: 'विषय (वैकल्पिक)',
+      allSubjectsGeneral: 'सभी विषय / सामान्य',
+      studentId: 'छात्र ID',
+
       markPresent: 'उपस्थित चिह्नित करें',
       markAbsent: 'अनुपस्थित चिह्नित करें',
       authPrompt: 'जारी रखने के लिए प्रमाणित करें',
       authFailed: 'प्रमाणीकरण विफल',
 
-      dashboard: 'डैशबोर्ड',
+      noSubjectsFound: 'कोई विषय नहीं मिला। पहले प्रोफ़ाइल सेटअप करें।',
       todaySummary: 'आज का सारांश',
       records: 'रिकॉर्ड',
       overallAttendance: 'कुल उपस्थिति',
@@ -159,7 +200,7 @@ export const resources = {
       currentSemester: 'वर्तमान सेमेस्टर',
       subjects: 'विषय',
       subjectsHint: 'इस सेमेस्टर में पढ़ाए जाने वाले विषयों की सूची दें।',
-      subjectPlaceholder: 'विषय का नाम',
+      subjectPlaceholder: 'विषय {{n}}',
       addMoreSubjects: 'और विषय जोड़ें',
       completeProfileSetup: 'प्रोफ़ाइल सेटअप पूरा करें',
       verifyDetails: 'विवरण ध्यानपूर्वक जांचें। यह प्रोफ़ाइल एक सेमेस्टर में एकबार सेट होती है।',
@@ -176,7 +217,8 @@ export const resources = {
       absent: 'अनुपस्थित',
       present: 'उपस्थित',
       saveAttendance: 'उपस्थिति सहेजें',
-      attendanceSaved: 'उपस्थिति सहेजी गई!',
+      alreadyMarkedPrefix: 'पहले से चिह्नित',
+      updateRecordNote: 'सहेजने से रिकॉर्ड अपडेट होगा।',
 
       reports: 'रिपोर्ट',
       attendanceReport: 'उपस्थिति रिपोर्ट',
@@ -203,7 +245,8 @@ export const resources = {
       allSubjects: 'सभी',
       recentLeaves: 'हाल की छुट्टियाँ',
       sortByDate: 'तारीख के अनुसार क्रमबद्ध करें',
-      viewAllRecords: 'सभी रिकॉर्ड देखें',
+      noLeaveRecords: 'कोई छुट्टी रिकॉर्ड नहीं मिला।',
+      applyForLeave: 'छुट्टी के लिए आवेदन करें',
 
       applyLeave: 'छुट्टी के लिए आवेदन करें',
       applyLeaveSubtitle: 'प्रशासनिक अनुमोदन के लिए अपना छुट्टी अनुरोध सबमिट करें।',
@@ -223,7 +266,11 @@ export const resources = {
       approvalTime: 'अनुमोदन में आमतौर पर 24-48 कार्य घंटे लगते हैं।',
       attendancePolicy: 'उपस्थिति नीति',
       attendancePolicyDesc: 'सेमेस्टर परीक्षाओं के लिए न्यूनतम 75% उपस्थिति अनिवार्य है।',
-      leaveSubmitted: 'छुट्टी अनुरोध सबमिट किया गया!',
+      reasonPlaceholder: 'छुट्टी का कारण बताएं...',
+      selectLeaveTypeFirst: 'कृपया छुट्टी का प्रकार चुनें।',
+      enterDates: 'कृपया प्रारंभ और समाप्ति तिथि दर्ज करें।',
+      enterReason: 'कृपया छुट्टी का कारण दर्ज करें।',
+      endBeforeStart: 'समाप्ति तिथि प्रारंभ तिथि से पहले नहीं हो सकती।',
 
       profile: 'प्रोफ़ाइल',
       editProfile: 'प्रोफ़ाइल संपादित करें',
@@ -233,7 +280,13 @@ export const resources = {
       hindi: 'हिन्दी',
       biometricLock: 'बायोमेट्रिक लॉक',
       leaveHistory: 'छुट्टी इतिहास',
+      leaveSubmitted: 'छुट्टी अनुरोध सबमिट किया गया!',
+      attendanceSaved: 'उपस्थिति सहेजी गई!',
+      viewAllRecords: 'सभी रिकॉर्ड देखें',
+      personalHistory: 'व्यक्तिगत इतिहास',
       mark: 'चिह्नित करें',
+      resetProfile: 'प्रोफ़ाइल रीसेट करें',
+      resetProfileMsg: 'यह आपकी वर्तमान प्रोफ़ाइल और विषय हटा देगा। जारी रखें?',
     },
   },
 } as const;
