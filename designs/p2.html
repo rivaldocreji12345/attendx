@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Directory - Attendance Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-tertiary-fixed": "#341100",
+                      "on-tertiary-fixed-variant": "#773205",
+                      "surface-variant": "#e3e1e9",
+                      "inverse-surface": "#2f3036",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#b6c4ff",
+                      "on-secondary": "#ffffff",
+                      "on-surface": "#1a1b21",
+                      "primary-fixed": "#dce1ff",
+                      "on-primary-fixed": "#00164e",
+                      "background": "#faf8ff",
+                      "on-surface-variant": "#444651",
+                      "outline-variant": "#c5c5d3",
+                      "on-tertiary-container": "#f39461",
+                      "outline": "#757682",
+                      "on-background": "#1a1b21",
+                      "surface-dim": "#dad9e1",
+                      "secondary-container": "#7ed4fd",
+                      "error": "#ba1a1a",
+                      "tertiary": "#4b1c00",
+                      "on-secondary-container": "#005b78",
+                      "inverse-primary": "#b6c4ff",
+                      "surface-container": "#eeedf4",
+                      "secondary-fixed-dim": "#7bd1fa",
+                      "tertiary-fixed-dim": "#ffb691",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#c0e8ff",
+                      "surface-container-low": "#f4f3fa",
+                      "on-secondary-fixed": "#001e2b",
+                      "surface-container-highest": "#e3e1e9",
+                      "secondary": "#006686",
+                      "surface-tint": "#4059aa",
+                      "on-primary-container": "#90a8ff",
+                      "surface-container-high": "#e9e7ef",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#1e3a8a",
+                      "on-secondary-fixed-variant": "#004d66",
+                      "tertiary-container": "#6e2c00",
+                      "on-error": "#ffffff",
+                      "surface": "#faf8ff",
+                      "surface-bright": "#faf8ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#264191",
+                      "primary": "#00236f",
+                      "inverse-on-surface": "#f1f0f7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-gap-lg": "20px",
+                      "container-padding": "16px",
+                      "base": "4px",
+                      "stack-gap-md": "12px",
+                      "grid-gutter": "12px",
+                      "stack-gap-sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                      "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                      "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                      "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-body-md md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-surface dark:bg-on-surface-variant shadow-sm transition-all duration-300">
+<div class="flex items-center justify-between px-container-padding h-16 w-full max-w-[768px] mx-auto">
+<div class="flex items-center gap-3">
+<img alt="University Admin Logo" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A clean, modern corporate logo for an academic institution featuring a stylized shield and open book in deep navy blue, set against a white background, suitable for a mobile app header." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB2PbW0UG2-shN5SYA0t-69qtgCnv4BQ-gUgnufXZSqs-xbyE8__jQ8ggvnYY9hZflZl-ULsIIEkTsEc1z46rzgdbaVcJvmVUoGafxNRBytHA2oeheh_LH1PV7-jwHTDU6C-7LienEXbTNUgzSov4FhsnuPdffgQww_j_4prQcgOEcmW3QORM2k3SDr0ZH20JmbU3VDZ_57WE-ES1NLPfmeOxkm7u-vmm3s5P-2jc36kdM6fkqR1SSq6ieo5g0PpSKkKIYig0VLeoY"/>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Attendance Pro</h1>
+</div>
+<div class="flex items-center">
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-primary font-label-md text-label-md">
+<span class="">Sem 5</span>
+<span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</header>
+<main class="w-full max-w-[768px] mx-auto px-container-padding py-stack-gap-lg">
+<!-- Search & Filter -->
+<!-- Student Directory List -->
+<div class="space-y-stack-gap-md">
+<!-- Student Card - Normal -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant flex items-center gap-4 mb-6">
+<img alt="Username" class="w-16 h-16 rounded-full object-cover border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3cQuhtwz5IAe0ZefSJe863c7GHVdWq5EvrAWalNrigRFnYxSlMP58mSjOn9CHVMZJNJOMGLuolNJbph1wM1GLdM2J5MZ_-kHrtxqJdx9_QQMxNcvs5vkfqFW0hteDUuR26jWEMpcnA54g0ZGSFkNrPveK4ZVCmlQ6HNNo6w4MqtV-4u56r5S_Ge1-TZbMxA9f7qSVgnebU0678CcAOjDn2rOfiQo9bw_5k_DrO9c8pzsOT6jOBzs37bpGU4Pf_DNTUb3ED5v8kEFd"/>
+<div class="flex-1">
+<h2 class="font-headline-md text-on-surface">Username</h2>
+<p class="text-body-sm text-on-surface-variant">Roll: CS-21045 • B.Tech CSE</p>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Data Structures (Blue >= 80%) -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Data Structures</h3><p class="text-primary font-bold text-headline-md">92%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+<!-- Operating Systems (Amber 75-80%) -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Operating Systems</h3><p class="text-tertiary-container font-bold text-headline-md">77.5%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+<!-- Computer Networks (Blue >= 80%) -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Computer Networks</h3><p class="text-primary font-bold text-headline-md">88%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+<!-- Database Systems (Red < 75%) -->
+<div class="bg-surface border rounded-xl p-4 shadow-sm relative border-outline-variant"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Database Systems</h3><p class="text-error font-bold text-headline-md">72%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+<!-- Discrete Math (Blue >= 80%) -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Discrete Math</h3><p class="text-primary font-bold text-headline-md">85%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+<!-- Software Engineering (Red < 75%) -->
+<div class="bg-surface border rounded-xl p-4 shadow-sm relative border-outline-variant"><div class="flex items-center justify-between"><div class="flex flex-col"><h3 class="font-headline-sm text-on-surface">Software Engineering</h3><p class="text-error font-bold text-headline-md">68%</p></div><button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm"><span class="material-symbols-outlined">how_to_reg</span></button></div></div>
+</div>
+<!-- Student Card - Defaulter (<75%) -->
+<!-- Student Card - Normal -->
+<!-- Student Card - Normal -->
+<!-- Student Card - Defaulter (<75%) -->
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flat no shadows">
+<!-- Active Tab: Dashboard -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-xl px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined filled group-hover:scale-90 duration-150">dashboard</span>
+<span class="font-label-md text-label-md mt-1">Dashboard</span>
+</a>
+<!-- Inactive Tab: Mark -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:scale-90 duration-150">how_to_reg</span>
+<span class="font-label-md text-label-md mt-1">Mark</span>
+</a>
+<!-- Inactive Tab: Reports -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:scale-90 duration-150">assessment</span>
+<span class="font-label-md text-label-md mt-1">Reports</span>
+</a>
+<!-- Inactive Tab: Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:scale-90 duration-150">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

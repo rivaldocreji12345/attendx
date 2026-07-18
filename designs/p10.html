@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leave Tracking - Personalized</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-tertiary-fixed": "#341100",
+                        "on-tertiary-fixed-variant": "#773205",
+                        "surface-variant": "#e3e1e9",
+                        "inverse-surface": "#2f3036",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1a1b21",
+                        "primary-fixed": "#dce1ff",
+                        "on-primary-fixed": "#00164e",
+                        "background": "#faf8ff",
+                        "on-surface-variant": "#444651",
+                        "outline-variant": "#c5c5d3",
+                        "on-tertiary-container": "#f39461",
+                        "outline": "#757682",
+                        "on-background": "#1a1b21",
+                        "surface-dim": "#dad9e1",
+                        "secondary-container": "#7ed4fd",
+                        "error": "#ba1a1a",
+                        "tertiary": "#4b1c00",
+                        "on-secondary-container": "#005b78",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-container": "#eeedf4",
+                        "secondary-fixed-dim": "#7bd1fa",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c0e8ff",
+                        "surface-container-low": "#f4f3fa",
+                        "on-secondary-fixed": "#001e2b",
+                        "surface-container-highest": "#e3e1e9",
+                        "secondary": "#006686",
+                        "surface-tint": "#4059aa",
+                        "on-primary-container": "#90a8ff",
+                        "surface-container-high": "#e9e7ef",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-fixed-variant": "#004d66",
+                        "tertiary-container": "#6e2c00",
+                        "on-error": "#ffffff",
+                        "surface": "#faf8ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#264191",
+                        "primary": "#00236f",
+                        "inverse-on-surface": "#f1f0f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap-lg": "20px",
+                        "container-padding": "16px",
+                        "base": "4px",
+                        "stack-gap-md": "12px",
+                        "grid-gutter": "12px",
+                        "stack-gap-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-container-padding h-16 w-full max-w-[768px] mx-auto bg-surface dark:bg-on-surface-variant shadow-sm z-50 sticky top-0">
+<div class="flex items-center gap-stack-gap-md">
+<img alt="University Logo" class="w-10 h-10 rounded-full object-cover shadow-sm border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAojC2BBMri52Z2g8fq40fN0YrIsx7bRaLCPEWuj5udT8yvt8Vp9WpmG4aiQKLvmsvePS5_HcYQOHdY450tymDHzAYrbxTRvFKC-Dz0eTnM0Gh6wRLrZYie7Gu9pcEjvO-y3YotkC1ijH-kUiM8uuBMG03ygbOqEBr4eOoJcroPI3UZAE0Tsc_s4Qs9B9Dy2dZwEw9Y5SJ_NcihWq_YiWSvhhoteqM3uXwss2eXvoXfKPeyqfCrh6WEsFB72-MqOqbP8s9IVBLeYACN"/>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Attendance Pro</h1>
+</div>
+<div class="flex items-center">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-highest px-3 py-1.5 rounded-full">Sem 5</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[768px] px-container-padding py-stack-gap-lg pb-24 flex flex-col gap-stack-gap-lg">
+<!-- Header Section -->
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Your Leaves</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Hello Student, track your absences</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2.5 rounded-lg flex items-center gap-2 hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add Leave
+            </button>
+</div>
+<!-- Summary Widget (Personalized Stats) -->
+<div class="grid grid-cols-2 gap-grid-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-error-container rounded-full opacity-50 blur-xl"></div>
+<div class="flex items-center gap-2 mb-2 z-10">
+<span class="material-symbols-outlined text-error text-[20px]">event_busy</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Leaves Taken</span>
+</div>
+<div class="z-10">
+<span class="font-headline-lg text-headline-lg text-on-background block">12</span>
+<span class="font-body-sm text-body-sm text-outline">Total days this sem</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container rounded-full opacity-50 blur-xl"></div>
+<div class="flex items-center gap-2 mb-2 z-10">
+<span class="material-symbols-outlined text-secondary text-[20px]">pending_actions</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Pending Approval</span>
+</div>
+<div class="z-10">
+<span class="font-headline-lg text-headline-lg text-on-background block">2</span>
+<span class="font-body-sm text-body-sm text-outline">Awaiting review</span>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex flex-col gap-stack-gap-sm">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="flex-shrink-0 font-label-md text-label-md px-4 py-2 rounded-full bg-primary-container text-on-primary-container border border-primary-container transition-colors shadow-sm">All History</button>
+<button class="flex-shrink-0 font-label-md text-label-md px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-variant transition-colors shadow-sm">Data Structures</button>
+<button class="flex-shrink-0 font-label-md text-label-md px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-variant transition-colors shadow-sm">Operating Systems</button>
+<button class="flex-shrink-0 font-label-md text-label-md px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-variant transition-colors shadow-sm">Database Mgt</button>
+</div>
+</div>
+<!-- Personalized Leave Records List -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Personal History</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 cursor-pointer hover:text-primary">Sort by Date <span class="material-symbols-outlined text-[16px]">arrow_drop_down</span></span>
+</div>
+<div class="flex flex-col">
+<!-- Record Item 1 -->
+<div class="p-4 border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors flex items-center justify-between group cursor-pointer min-h-[64px]">
+<div class="flex items-center gap-4">
+<div class="w-1 h-10 rounded-full bg-error"></div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-background">Data Structures</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 12, 2023 • Medical Leave</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-1 rounded-md">Approved</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<!-- Record Item 2 -->
+<div class="p-4 border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors flex items-center justify-between group cursor-pointer min-h-[64px]">
+<div class="flex items-center gap-4">
+<div class="w-1 h-10 rounded-full bg-tertiary-container"></div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-background">Operating Systems</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 15, 2023 • Personal</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm bg-surface-variant text-on-surface-variant px-2 py-1 rounded-md border border-outline-variant">Pending</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<!-- Record Item 3 -->
+<div class="p-4 hover:bg-surface-container-lowest transition-colors flex items-center justify-between group cursor-pointer min-h-[64px]">
+<div class="flex items-center gap-4">
+<div class="w-1 h-10 rounded-full bg-error"></div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-background">Database Mgt</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sep 28, 2023 • Sports Event</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-1 rounded-md">Approved</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="p-3 bg-surface-container-low text-center border-t border-outline-variant">
+<button class="font-label-md text-label-md text-primary hover:text-on-primary-fixed-variant transition-colors">View All My Records</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline md:hidden max-w-[768px]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[24px] mb-1">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[24px] mb-1">how_to_reg</span>
+<span class="font-label-sm text-label-sm">Mark</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[24px] mb-1">assessment</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-xl px-4 py-1 opacity-80 scale-95 transition-all">
+<span class="material-symbols-outlined fill text-[24px] mb-1">person</span>
+<span class="font-label-sm text-label-sm font-bold">Profile</span>
+</button>
+</nav>
+</body></html>
