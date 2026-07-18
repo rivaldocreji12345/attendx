@@ -31,7 +31,13 @@ export default function RootLayout() {
   return (
     <ErrorBoundary>
       <AppProviders>
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="setup" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="leaves/index" />
+          <Stack.Screen name="leaves/apply" />
+        </Stack>
       </AppProviders>
     </ErrorBoundary>
   );
