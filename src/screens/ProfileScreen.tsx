@@ -70,9 +70,6 @@ export function ProfileScreen() {
     );
   }
 
-  function handleLeaveHistory() {
-    router.push('/leaves');
-  }
 
   return (
     <View style={styles.container}>
@@ -122,17 +119,7 @@ export function ProfileScreen() {
             <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
           </Pressable>
 
-          <View style={styles.divider} />
 
-          <Pressable
-            accessibilityLabel="leave-history"
-            onPress={handleLeaveHistory}
-            style={styles.menuItem}
-          >
-            <MaterialIcons name="event-busy" size={20} color={colors.primary} />
-            <Text style={styles.menuItemText}>{t('leaveHistory')}</Text>
-            <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
-          </Pressable>
         </View>
 
         {/* Settings */}

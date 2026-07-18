@@ -1,7 +1,7 @@
 export const resources = {
   en: {
     translation: {
-      appTitle: 'Attendance Pro',
+      appTitle: 'Attendx',
       appSubtitle: 'Track your academic attendance',
 
       // Auth
@@ -158,7 +158,7 @@ export const resources = {
   },
   hi: {
     translation: {
-      appTitle: 'अटेंडेंस प्रो',
+      appTitle: 'Attendx',
       appSubtitle: 'अपनी शैक्षणिक उपस्थिति ट्रैक करें',
 
       saving: 'सहेज रहे हैं...',
