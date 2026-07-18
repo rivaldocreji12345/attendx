@@ -10,10 +10,12 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import attendanceReducer from '@/store/slices/attendanceSlice';
+import profileReducer from '@/store/slices/profileSlice';
 import settingsReducer from '@/store/slices/settingsSlice';
 
 const rootReducer = combineReducers({
   attendance: attendanceReducer,
+  profile: profileReducer,
   settings: settingsReducer,
 });
 
