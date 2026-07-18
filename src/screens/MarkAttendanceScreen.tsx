@@ -21,6 +21,7 @@ import type { RootState } from '@/store';
 import { colors, radii, spacing, typography } from '@/theme/tokens';
 import type { AttendanceStatus, Subject } from '@/types/models';
 import { getTodayISODate } from '@/utils/date';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 export function MarkAttendanceScreen() {
   const { t } = useTranslation();
@@ -28,10 +29,12 @@ export function MarkAttendanceScreen() {
 
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
-  const [date] = useState(getTodayISODate());
+  const [date, setDate] = useState(getTodayISODate());
   const [status, setStatus] = useState<AttendanceStatus>('present');
   const [saving, setSaving] = useState(false);
   const [showSubjectPicker, setShowSubjectPicker] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [periods, setPeriods] = useState(1);
   const [existingRecord, setExistingRecord] = useState<AttendanceStatus | null>(null);
 
   useFocusEffect(
@@ -48,7 +51,12 @@ export function MarkAttendanceScreen() {
       if (!selectedSubject) return;
       getSubjectAttendanceRecord(selectedSubject.id, date).then((rec) => {
         setExistingRecord(rec?.status ?? null);
-        if (rec) setStatus(rec.status);
+        if (rec) {
+          setStatus(rec.status);
+          setPeriods(rec.periods ?? 1);
+        } else {
+          setPeriods(1);
+        }
       });
     }, [selectedSubject, date]),
   );
@@ -60,13 +68,24 @@ export function MarkAttendanceScreen() {
     }
     setSaving(true);
     try {
-      await upsertSubjectAttendance(selectedSubject.id, date, status);
+      await upsertSubjectAttendance(selectedSubject.id, date, status, periods);
       setExistingRecord(status);
       Alert.alert(t('attendanceSaved'));
     } catch {
       Alert.alert(t('failedToSave'));
     } finally {
       setSaving(false);
+    }
+  }
+
+  function handleDateChange(event: DateTimePickerEvent, selectedDate?: Date) {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      // Convert to local YYYY-MM-DD
+      const year = selectedDate.getFullYear();
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+      const day = String(selectedDate.getDate()).padStart(2, '0');
+      setDate(`${year}-${month}-${day}`);
     }
   }
 
@@ -132,10 +151,23 @@ export function MarkAttendanceScreen() {
 
         {/* Date */}
         <Text style={[styles.fieldLabel, styles.fieldLabelSpacing]}>{t('date').toUpperCase()}</Text>
-        <View style={styles.dateRow}>
+        <Pressable
+          accessibilityLabel="select-date"
+          onPress={() => setShowDatePicker(true)}
+          style={styles.dateRow}
+        >
           <MaterialIcons name="today" size={20} color={colors.primary} />
           <Text style={styles.dateText}>{date}</Text>
-        </View>
+        </Pressable>
+        {showDatePicker && (
+          <DateTimePicker
+            value={new Date(date)}
+            mode="date"
+            display="default"
+            onChange={handleDateChange}
+            maximumDate={new Date()} // Don't allow future attendance
+          />
+        )}
 
         {/* Status Toggle */}
         <Text style={[styles.fieldLabel, styles.fieldLabelSpacing]}>{t('status').toUpperCase()}</Text>
@@ -184,6 +216,28 @@ export function MarkAttendanceScreen() {
             >
               {t('present')}
             </Text>
+          </Pressable>
+        </View>
+
+        {/* Periods Selector */}
+        <Text style={[styles.fieldLabel, styles.fieldLabelSpacing]}>
+          {t('numberOfPeriods', { defaultValue: 'Number of Periods' }).toUpperCase()}
+        </Text>
+        <View style={styles.periodsRow}>
+          <Pressable
+            accessibilityLabel="decrease-periods"
+            onPress={() => setPeriods((p) => Math.max(1, p - 1))}
+            style={styles.periodControlBtn}
+          >
+            <MaterialIcons name="remove" size={20} color={colors.primary} />
+          </Pressable>
+          <Text style={styles.periodCountText}>{periods}</Text>
+          <Pressable
+            accessibilityLabel="increase-periods"
+            onPress={() => setPeriods((p) => Math.min(10, p + 1))}
+            style={styles.periodControlBtn}
+          >
+            <MaterialIcons name="add" size={20} color={colors.primary} />
           </Pressable>
         </View>
 
@@ -513,5 +567,29 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontFamily: typography.heading,
     fontWeight: '600',
+  },
+  periodsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    marginTop: spacing.xs,
+  },
+  periodControlBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: radii.full,
+    backgroundColor: colors.surfaceContainerLow,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.outlineVariant,
+  },
+  periodCountText: {
+    color: colors.onSurface,
+    fontFamily: typography.heading,
+    fontSize: 20,
+    fontWeight: '700',
+    minWidth: 40,
+    textAlign: 'center',
   },
 });

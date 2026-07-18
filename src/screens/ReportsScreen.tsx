@@ -34,10 +34,10 @@ export function ReportsScreen() {
     }, []),
   );
 
-  const totalSessions = subjects.reduce((sum, s) => sum + s.totalSessions, 0);
-  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedSessions, 0);
+  const totalPeriods = subjects.reduce((sum, s) => sum + s.totalPeriods, 0);
+  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedPeriods, 0);
   const overallPercent =
-    totalSessions === 0 ? 0 : Math.round((totalAttended / totalSessions) * 100 * 10) / 10;
+    totalPeriods === 0 ? 0 : Math.round((totalAttended / totalPeriods) * 100 * 10) / 10;
 
   const hasCritical = subjects.some((s) => s.attendancePercent < 75);
 
@@ -91,8 +91,8 @@ export function ReportsScreen() {
             <Text style={styles.overallPercent}>{overallPercent}%</Text>
           </View>
           <View style={styles.overallStats}>
-            <Text style={styles.overallStatLabel}>{t('totalClasses')}:</Text>
-            <Text style={styles.overallStatValue}>{totalSessions}</Text>
+            <Text style={styles.overallStatLabel}>{t('totalPeriods', { defaultValue: 'Total Periods' })}:</Text>
+            <Text style={styles.overallStatValue}>{totalPeriods}</Text>
             <Text style={[styles.overallStatLabel, { marginTop: 4 }]}>
               {t('attendedSlash')}:
             </Text>
@@ -118,9 +118,9 @@ export function ReportsScreen() {
           const isCritical = subject.attendancePercent < 75;
           const isBorderline =
             subject.attendancePercent >= 75 && subject.attendancePercent < 80;
-          const sessionsShort =
+          const periodsShort =
             isCritical
-              ? Math.max(0, 3 * subject.absentSessions - subject.attendedSessions)
+              ? Math.max(0, 3 * subject.absentPeriods - subject.attendedPeriods)
               : 0;
 
           return (
@@ -148,7 +148,7 @@ export function ReportsScreen() {
               </View>
 
               <Text style={styles.subjectMeta}>
-                {t('attended')}: {subject.attendedSessions} / {subject.totalSessions} {t('sessions')}
+                {t('attended')}: {subject.attendedPeriods} / {subject.totalPeriods} {t('periods', { defaultValue: 'periods' })}
               </Text>
 
               <View style={styles.progressTrack}>
@@ -165,7 +165,7 @@ export function ReportsScreen() {
 
               {isCritical && (
                 <Text style={styles.shortByText}>
-                  {t('shortBy')} {sessionsShort} {t('sessions')}
+                  {t('shortBy')} {periodsShort} {t('periods', { defaultValue: 'periods' })}
                 </Text>
               )}
               {isBorderline && (

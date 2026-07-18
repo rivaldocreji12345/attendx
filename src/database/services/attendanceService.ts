@@ -35,16 +35,18 @@ export async function upsertSubjectAttendance(
   subjectId: number,
   date: string,
   status: AttendanceStatus,
+  periods: number = 1,
 ): Promise<void> {
   const db = await getDb();
   await db.runAsync(
-    `INSERT INTO SubjectAttendance (subjectId, date, status, markedAt)
-     VALUES (?, ?, ?, ?)
+    `INSERT INTO SubjectAttendance (subjectId, date, status, periods, markedAt)
+     VALUES (?, ?, ?, ?, ?)
      ON CONFLICT(subjectId, date)
-     DO UPDATE SET status = excluded.status, markedAt = excluded.markedAt`,
+     DO UPDATE SET status = excluded.status, periods = excluded.periods, markedAt = excluded.markedAt`,
     subjectId,
     date,
     status,
+    periods,
     new Date().toISOString(),
   );
 }
@@ -70,7 +72,7 @@ export async function getSubjectAttendanceRecord(
   return row ?? null;
 }
 
-/** Returns each subject with attended sessions count, absent sessions count, total sessions count, and attendance percentage. */
+/** Returns each subject with attended periods count, absent periods count, total periods count, and attendance percentage. */
 export async function getSubjectsWithStats(): Promise<SubjectWithStats[]> {
   const db = await getDb();
   return db.getAllAsync<SubjectWithStats>(`
@@ -79,14 +81,14 @@ export async function getSubjectsWithStats(): Promise<SubjectWithStats[]> {
       s.name,
       s.totalHours,
       s.createdAt,
-      COUNT(CASE WHEN sa.status = 'present' THEN 1 END) AS attendedSessions,
-      COUNT(CASE WHEN sa.status = 'absent' THEN 1 END) AS absentSessions,
-      COUNT(sa.status) AS totalSessions,
+      IFNULL(SUM(CASE WHEN sa.status = 'present' THEN sa.periods ELSE 0 END), 0) AS attendedPeriods,
+      IFNULL(SUM(CASE WHEN sa.status = 'absent' THEN sa.periods ELSE 0 END), 0) AS absentPeriods,
+      IFNULL(SUM(sa.periods), 0) AS totalPeriods,
       CASE
-        WHEN COUNT(sa.status) = 0 THEN 0
+        WHEN SUM(sa.periods) IS NULL THEN 0
         ELSE ROUND(
-          CAST(COUNT(CASE WHEN sa.status = 'present' THEN 1 END) AS REAL)
-          / COUNT(sa.status) * 100,
+          CAST(SUM(CASE WHEN sa.status = 'present' THEN sa.periods ELSE 0 END) AS REAL)
+          / SUM(sa.periods) * 100,
           1
         )
       END AS attendancePercent

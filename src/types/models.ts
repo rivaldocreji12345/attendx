@@ -50,6 +50,7 @@ export type SubjectAttendance = {
   subjectId: number;
   date: string;
   status: AttendanceStatus;
+  periods: number;
   markedAt: string;
 };
 
@@ -71,8 +72,8 @@ export type Leave = {
 
 /** Subject enriched with computed attendance stats. */
 export type SubjectWithStats = Subject & {
-  attendedSessions: number;
-  absentSessions: number;
-  totalSessions: number;
+  attendedPeriods: number;
+  absentPeriods: number;
+  totalPeriods: number;
   attendancePercent: number;
 };

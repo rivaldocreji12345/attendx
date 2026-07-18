@@ -59,6 +59,7 @@ export async function initializeDatabase(): Promise<void> {
       subjectId INTEGER NOT NULL,
       date TEXT NOT NULL,
       status TEXT NOT NULL CHECK(status IN ('present', 'absent')),
+      periods INTEGER NOT NULL DEFAULT 1,
       markedAt TEXT NOT NULL,
       FOREIGN KEY(subjectId) REFERENCES Subjects(id),
       UNIQUE(subjectId, date)
@@ -78,4 +79,13 @@ export async function initializeDatabase(): Promise<void> {
       FOREIGN KEY(subjectId) REFERENCES Subjects(id)
     );
   `);
+
+  // Run migrations to add missing columns to existing tables
+  try {
+    await db.execAsync(`
+      ALTER TABLE SubjectAttendance ADD COLUMN periods INTEGER NOT NULL DEFAULT 1;
+    `);
+  } catch (e) {
+    // Column already exists
+  }
 }
