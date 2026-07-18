@@ -37,15 +37,13 @@ export function DashboardScreen() {
     }, []),
   );
 
-  const overallPercent =
-    subjects.length === 0
-      ? 0
-      : Math.round(
-          subjects.reduce((sum, s) => sum + s.attendancePercent, 0) / subjects.length,
-        );
+  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedSessions, 0);
+  const totalSessions = subjects.reduce((sum, s) => sum + s.totalSessions, 0);
 
-  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedHours, 0);
-  const totalHours = subjects.reduce((sum, s) => sum + s.totalHours, 0);
+  const overallPercent =
+    totalSessions === 0
+      ? 0
+      : Math.round((totalAttended / totalSessions) * 100);
 
   const initials = profile
     ? profile.studentName
@@ -130,8 +128,8 @@ export function DashboardScreen() {
                 <View style={styles.subjectInfo}>
                   <Text style={styles.subjectName}>{subject.name}</Text>
                   <Text style={styles.subjectMeta}>
-                    {t('attended')}: {subject.attendedHours} / {t('total')}: {subject.totalHours}{' '}
-                    {t('hours')}
+                    {t('attended')}: {subject.attendedSessions} / {t('total')}: {subject.totalSessions}{' '}
+                    {t('sessions')}
                   </Text>
                   {isCritical && (
                     <View style={styles.warningRow}>
@@ -171,7 +169,7 @@ export function DashboardScreen() {
         {subjects.length > 0 && (
           <View style={styles.summaryCard}>
             <View style={styles.summaryItem}>
-              <Text style={styles.summaryValue}>{totalHours}</Text>
+              <Text style={styles.summaryValue}>{totalSessions}</Text>
               <Text style={styles.summaryLabel}>{t('totalClasses')}</Text>
             </View>
             <View style={styles.summaryDivider} />

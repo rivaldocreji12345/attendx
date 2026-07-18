@@ -34,10 +34,10 @@ export function ReportsScreen() {
     }, []),
   );
 
-  const totalHours = subjects.reduce((sum, s) => sum + s.totalHours, 0);
-  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedHours, 0);
+  const totalSessions = subjects.reduce((sum, s) => sum + s.totalSessions, 0);
+  const totalAttended = subjects.reduce((sum, s) => sum + s.attendedSessions, 0);
   const overallPercent =
-    totalHours === 0 ? 0 : Math.round((totalAttended / totalHours) * 100 * 10) / 10;
+    totalSessions === 0 ? 0 : Math.round((totalAttended / totalSessions) * 100 * 10) / 10;
 
   const hasCritical = subjects.some((s) => s.attendancePercent < 75);
 
@@ -92,7 +92,7 @@ export function ReportsScreen() {
           </View>
           <View style={styles.overallStats}>
             <Text style={styles.overallStatLabel}>{t('totalClasses')}:</Text>
-            <Text style={styles.overallStatValue}>{totalHours}</Text>
+            <Text style={styles.overallStatValue}>{totalSessions}</Text>
             <Text style={[styles.overallStatLabel, { marginTop: 4 }]}>
               {t('attendedSlash')}:
             </Text>
@@ -118,9 +118,9 @@ export function ReportsScreen() {
           const isCritical = subject.attendancePercent < 75;
           const isBorderline =
             subject.attendancePercent >= 75 && subject.attendancePercent < 80;
-          const hoursShort =
+          const sessionsShort =
             isCritical
-              ? Math.ceil(subject.totalHours * 0.75 - subject.attendedHours)
+              ? Math.max(0, 3 * subject.absentSessions - subject.attendedSessions)
               : 0;
 
           return (
@@ -148,7 +148,7 @@ export function ReportsScreen() {
               </View>
 
               <Text style={styles.subjectMeta}>
-                {t('attended')}: {subject.attendedHours} / {subject.totalHours} hrs
+                {t('attended')}: {subject.attendedSessions} / {subject.totalSessions} {t('sessions')}
               </Text>
 
               <View style={styles.progressTrack}>
@@ -165,7 +165,7 @@ export function ReportsScreen() {
 
               {isCritical && (
                 <Text style={styles.shortByText}>
-                  {t('shortBy')} {hoursShort} hrs
+                  {t('shortBy')} {sessionsShort} {t('sessions')}
                 </Text>
               )}
               {isBorderline && (

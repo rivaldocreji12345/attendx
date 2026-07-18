@@ -71,6 +71,8 @@ export type Leave = {
 
 /** Subject enriched with computed attendance stats. */
 export type SubjectWithStats = Subject & {
-  attendedHours: number;
+  attendedSessions: number;
+  absentSessions: number;
+  totalSessions: number;
   attendancePercent: number;
 };

@@ -6,7 +6,12 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "plugins": ["expo-router", "expo-local-authentication"],
+    "plugins": [
+      "expo-router",
+      "expo-local-authentication",
+      "expo-asset",
+      "@react-native-community/datetimepicker"
+    ],
     "scheme": "attendx",
     "android": {
       "adaptiveIcon": {
@@ -15,7 +20,6 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false,
       "package": "com.attendx.app"
     },
     "ios": {

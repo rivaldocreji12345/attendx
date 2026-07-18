@@ -34,6 +34,7 @@ export const resources = {
       attended: 'Attended',
       total: 'Total',
       hours: 'hours',
+      sessions: 'sessions',
       actionRequired: 'Action Required',
       criticallyLow: 'Critically low attendance alert',
       noSubjectsFound: 'No subjects found. Please set up your profile first.',
@@ -184,6 +185,7 @@ export const resources = {
       attended: 'उपस्थित',
       total: 'कुल',
       hours: 'घंटे',
+      sessions: 'सत्र',
       actionRequired: 'कार्रवाई आवश्यक',
 
       profileSetup: 'छात्र प्रोफ़ाइल सेटअप',

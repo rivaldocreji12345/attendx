@@ -70,7 +70,7 @@ export async function getSubjectAttendanceRecord(
   return row ?? null;
 }
 
-/** Returns each subject with attended hours count and attendance percentage. */
+/** Returns each subject with attended sessions count, absent sessions count, total sessions count, and attendance percentage. */
 export async function getSubjectsWithStats(): Promise<SubjectWithStats[]> {
   const db = await getDb();
   return db.getAllAsync<SubjectWithStats>(`
@@ -79,12 +79,14 @@ export async function getSubjectsWithStats(): Promise<SubjectWithStats[]> {
       s.name,
       s.totalHours,
       s.createdAt,
-      COUNT(CASE WHEN sa.status = 'present' THEN 1 END) AS attendedHours,
+      COUNT(CASE WHEN sa.status = 'present' THEN 1 END) AS attendedSessions,
+      COUNT(CASE WHEN sa.status = 'absent' THEN 1 END) AS absentSessions,
+      COUNT(sa.status) AS totalSessions,
       CASE
-        WHEN s.totalHours = 0 THEN 0
+        WHEN COUNT(sa.status) = 0 THEN 0
         ELSE ROUND(
           CAST(COUNT(CASE WHEN sa.status = 'present' THEN 1 END) AS REAL)
-          / s.totalHours * 100,
+          / COUNT(sa.status) * 100,
           1
         )
       END AS attendancePercent
